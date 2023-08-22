@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+export DEB_LDFLAGS_MAINT_APPEND := -Wl,--as-needed
+export AUTOMAKE := automake --foreign --add-missing --force-missing
+
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-mmx=no --enable-opengl-player=no --enable-rpath=no
+
+override_dh_install:
+	chrpath --delete debian/tmp/usr/bin/gtv debian/tmp/usr/bin/plaympeg
+
+	dh_install -Xlibsmpeg.la
+
+override_dh_missing:
+	dh_missing --fail-missing -Xlibsmpeg.la
