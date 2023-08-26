@@ -1,0 +1,8 @@
+.vs/
+**/*.obj
+**/*.lib
+**/*.tlog
+**/*.pdb
+**/*.vcxproj.user
+onscripter-????????/
+**/x64/
